@@ -1,0 +1,34 @@
+{% load static %}
+<!-- Necesitas {% load static %} para poder cargar los archivos estáticos-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller</title>
+    <link rel="stylesheet" href="{% static "estilos.css" %}">
+    <!-- Necesitas {% static "" %} para poder cargar un archivo estático-->
+</head>
+<body>
+    <h1>TALLER CON DJANGO</h1>
+    <br>
+    <p>Trabajo con CRUD</p>
+    <hr>
+    <ul>
+        {% for i in objeto %}
+            <li><a href="autor/{{ i.id }}">{{ i.nombre }}</a></li> 
+            <ul>
+                {% for u in i.profesion.all %}
+                    <li>{{ u.nombre }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+
+    {% if objeto %}
+        <h1>El objeto se encuentra.</h1>
+    {% else %}
+        <h1>El objeto no se encuentra.</h1>
+    {% endif %}
+</body>
+</html>
